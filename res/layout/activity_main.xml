@@ -1,0 +1,157 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/toalhaazul"
+    tools:context="br.ufla.rachandoaconta.MainActivity">
+
+<ScrollView 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    
+    <TableRow 
+        android:id="@+id/rowTop"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@color/graytopo">
+        
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="40dp"
+        android:layout_height="fill_parent"
+        android:paddingLeft="10dp"
+        android:src="@drawable/ic_launcher" />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:text="RACHANDO A CONTA" />
+    
+    <Button 
+        android:id="@+id/buttonSobreMain"
+        android:layout_width="wrap_content"
+	    android:layout_height="fill_parent"
+	    android:layout_marginLeft="45dp"
+	    android:gravity="center"
+	    android:background="@drawable/buttonshape3"
+	    android:onClick="acaoBotoes"
+	    android:text="Sobre"/>
+
+    </TableRow>
+    
+    
+    <TableLayout 
+        android:id="@+id/rowConsumidor"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:background="@drawable/rowshape2">
+
+        <TableRow 
+            android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/buttonConsumidor"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/buttonshape"
+            android:onClick="acaoBotoes"
+            android:text="Adicionar Consumidor"/>
+        </TableRow>
+        
+        <TableRow 
+            android:gravity="center_horizontal">
+            <ListView
+                android:id="@+id/listViewConsumidor"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edtshape">
+            </ListView>
+        </TableRow>
+    
+        
+        <TableRow 
+            android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/buttonItem"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/buttonshape"
+            android:onClick="acaoBotoes"
+            android:text="Adicionar Item" />
+        </TableRow>
+        
+        <TableRow 
+            android:gravity="center_horizontal">
+            <ListView
+                android:id="@+id/listViewItem"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edtshape">
+            </ListView>
+        </TableRow>
+    </TableLayout>
+    
+    <TableRow 
+        android:id="@+id/rowTotal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rowshape2">
+        
+        <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:gravity="center_vertical"
+	        android:layout_marginLeft="10dp"
+	        android:textSize="22sp"
+	        android:text="Valor total da conta: " />
+        
+        <TextView
+	        android:id="@+id/textViewValor"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:gravity="center_vertical"
+	        android:layout_marginLeft="20dp"
+	        android:text="R$ 0,00" />
+        
+    </TableRow>
+    
+    <TableRow
+        android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+	    
+	    <Button
+	            android:id="@+id/buttonLimpar"
+	            android:layout_width="250dp"
+	            android:layout_height="wrap_content"
+	            android:background="@drawable/buttonshape"
+	            android:onClick="acaoBotoes"
+	            android:text="Limpar conta" />
+	    
+    </TableRow>
+
+</LinearLayout>
+</ScrollView>
+</LinearLayout>

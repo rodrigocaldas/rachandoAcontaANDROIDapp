@@ -1,0 +1,123 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@color/graytudo"
+    tools:context="br.ufla.rachandoaconta.DetalhePessoa" >
+
+<ScrollView 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    
+    <TableRow 
+        android:id="@+id/rowTop"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@color/graytopo">
+        
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="40dp"
+        android:layout_height="fill_parent"
+        android:paddingLeft="10dp"
+        android:src="@drawable/ic_launcher" />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:text="RACHANDO A CONTA" />
+
+    </TableRow>
+
+    <TableLayout 
+        android:id="@+id/rowDetalhe"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/rowshape">
+        
+		<TextView
+			android:id="@+id/txtDetalheNome"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:gravity="center"
+			android:layout_marginLeft="10dp"
+			android:textSize="28sp"
+			android:text="nome pessoa" />
+        
+		<ListView
+		    android:id="@+id/listViewDetalhe"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="10dp"
+		    android:background="@drawable/edtshape"
+		    android:clickable="false"
+		    android:focusable="false"
+		    android:focusableInTouchMode="false" >
+		</ListView>
+    
+    </TableLayout>
+    
+    <TableRow 
+        android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+        android:layout_marginTop="15dp">
+	    <TextView
+		        android:layout_width="150dp"
+		        android:layout_height="fill_parent"
+		        android:layout_marginLeft="10dp"
+		        android:gravity="left"
+		        android:textSize="22sp"
+		        android:text="valor total:" />
+	    
+		<TextView
+		    android:id="@+id/txtDetalheTotal"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:layout_marginRight="10dp"
+		    android:gravity="right"
+		    android:textSize="22sp"
+		    android:text="numero" />
+    </TableRow>
+    
+    <TableRow 
+        android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+        android:layout_marginTop="15dp">
+		
+        <Button
+            android:id="@+id/buttonDetalhePago"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/buttonshape"
+            android:onClick="acaoDetalhe"
+            android:text="Marcar como pago" />
+        
+        <Button
+            android:id="@+id/buttonDetalheVoltar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/buttonshape"
+            android:onClick="acaoDetalhe"
+            android:text="Voltar" />
+        
+    </TableRow>
+    
+</LinearLayout>
+</ScrollView>
+</LinearLayout>

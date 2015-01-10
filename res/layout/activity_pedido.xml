@@ -1,0 +1,153 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/toalhaverde"
+    tools:context="br.ufla.rachandoaconta.Pedido" >
+    
+    <TableRow 
+	    android:id="@+id/rowTop"
+	    android:layout_width="fill_parent"
+	    android:layout_height="40dp"
+	    android:background="@color/graytopo">
+        
+    <ImageView
+	    android:id="@+id/imageView1"
+	    android:layout_width="40dp"
+	    android:layout_height="fill_parent"
+	    android:paddingLeft="10dp"
+	    android:src="@drawable/ic_launcher" />
+
+    <TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="fill_parent"
+	    android:gravity="center_vertical"
+	    android:layout_marginLeft="10dp"
+	    android:text="RACHANDO A CONTA" />
+    
+    </TableRow>
+    
+    
+   <TableLayout 
+	   android:id="@+id/rowBody"
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   android:layout_below="@+id/rowTop"
+	   android:layout_marginTop="10dp"
+	   android:layout_marginLeft="5dp"
+	   android:layout_marginRight="5dp"
+	   android:background="@drawable/rowshape">
+        
+        
+           <TextView
+	           android:layout_width="50dp"
+	           android:layout_height="fill_parent"
+	           android:layout_marginLeft="10dp"
+	           android:layout_marginTop="7dp"
+	           android:text="Item: "
+	           android:textSize="20sp" />
+           
+           <EditText 
+	       		android:id="@+id/fieldItem"
+	            android:layout_width="wrap_content"
+	        	android:layout_height="35dp"
+	        	android:layout_marginRight="10dp"
+	        	android:layout_marginLeft="10dp"
+	        	android:layout_marginTop="3dp"
+	        	android:background="@drawable/edtshape"
+	        	android:hint="Clique para digitar"
+		        android:maxLines="1"
+		    	android:lines="1"
+		    	android:inputType="text"
+		    	android:imeOptions="actionNext" />
+
+
+            <TextView 
+	            android:layout_width="wrap_content"
+	        	android:layout_height="fill_parent"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginTop="7dp" 
+		        android:textSize="20sp"
+		        android:text="Preço: " />
+            
+            <EditText 
+	            android:id="@+id/fieldPreco"
+	            android:layout_width="wrap_content"
+	        	android:layout_height="35dp"
+	        	android:layout_marginRight="10dp"
+	        	android:layout_marginLeft="10dp"
+		        android:layout_marginTop="3dp"
+	        	android:background="@drawable/edtshape"
+	        	android:hint="Clique para digitar"
+		    	android:inputType="numberDecimal"
+		    	android:imeOptions="actionNext" />
+            
+			<TextView 
+	            android:layout_width="wrap_content"
+	        	android:layout_height="fill_parent"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginTop="7dp" 
+		        android:textSize="20sp"
+		        android:text="Quantidade: " />
+            
+            <EditText 
+	            android:id="@+id/fieldQuantidade"
+	            android:layout_width="wrap_content"
+	        	android:layout_height="35dp"
+	        	android:layout_marginRight="10dp"
+	        	android:layout_marginLeft="10dp"
+		        android:layout_marginTop="3dp"
+	        	android:background="@drawable/edtshape"
+	        	android:hint="Clique para digitar"
+		    	android:inputType="number"
+		    	android:imeOptions="actionDone" />
+        
+        <TextView 
+	        android:layout_width="fill_parent"
+	       	android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginTop="7dp"
+	        android:textSize="18sp"
+	        android:text="Escolha uma ou mais pessoa abaixo" />
+        
+            <ListView
+	            android:id="@+id/listViewPessoas"
+	            android:layout_width="fill_parent"
+                android:layout_height="125dp"
+	            android:layout_marginTop="3dp"
+		       	android:layout_marginLeft="10dp"
+		       	android:layout_marginRight="10dp"
+	            android:background="@drawable/edtshape">
+            </ListView>
+
+        <TableRow 
+	        android:layout_width="fill_parent"
+	       	android:layout_height="wrap_content"
+	       	android:layout_marginTop="5dp">
+
+            <Button
+                android:id="@+id/buttonCancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/buttonshape"
+                android:onClick="acaoBotoes2"
+                android:text="Cancelar" />
+            
+            <Button
+                android:id="@+id/buttonConfirmar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/buttonshape"
+                android:onClick="acaoBotoes2"
+                android:text="Confirmar" />
+            
+        </TableRow>        
+    </TableLayout>
+
+</LinearLayout>

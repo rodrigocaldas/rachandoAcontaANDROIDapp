@@ -1,0 +1,98 @@
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/graytudo"
+    tools:context="br.ufla.rachandoaconta.Popup" >
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:onClick="acao"
+        android:src="@drawable/mais" />
+    
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButton1"
+        android:layout_below="@+id/imageButton1"
+        android:layout_marginTop="10dp"
+        android:onClick="acao"
+        android:src="@drawable/menos" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/imageButton1"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="35dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" 
+        android:textColor="@color/preto"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_marginTop="15dp"
+        android:text="Quantidade: "
+        android:textAppearance="?android:attr/textAppearanceMedium" 
+        android:textColor="@color/preto"/>
+    
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="15dp"
+        android:text="Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" 
+        android:textColor="@color/preto"/>
+    
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_marginTop="15dp"
+        android:text="lista de pessoas"
+        android:textAppearance="?android:attr/textAppearanceMedium" 
+        android:textColor="@color/preto"/>
+
+    <Button
+        android:id="@+id/buttonPopup2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageButton2"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:onClick="acao"
+        android:text="Apagar item" />
+    
+    <Button
+        android:id="@+id/buttonPopup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageButton2"
+        android:layout_toRightOf="@+id/buttonPopup2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:onClick="acao"
+        android:text="OK" />
+
+</RelativeLayout>

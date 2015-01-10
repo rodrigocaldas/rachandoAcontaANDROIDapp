@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="preto">#000000</color>
+    
+    <color name="graytudo">#DCDCDC</color>
+    <color name="graytopo">#9E9E9E</color>
+    
+    
+    <color name="verdeBotaoInicio">#228B22</color>
+    <color name="verdeBotaoFim">#67DA67</color>
+    <color name="verdefundo">#27A0A0</color>
+    
+    <color name="azulBotaoInicio">#2763A0</color>
+    <color name="azulBotaoFim">#3682CE</color>
+    <color name="azulfundo">#67A1DA</color>
+    <color name="azulbebe">#87CEFA</color>
+    
+    
+    
+</resources>

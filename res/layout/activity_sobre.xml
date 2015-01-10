@@ -1,0 +1,509 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    tools:context="br.ufla.rachandoaconta.Sobre" >
+    
+<ScrollView 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    
+    <TableRow 
+	    android:id="@+id/rowTop"
+	    android:layout_width="fill_parent"
+	    android:layout_height="40dp"
+	    android:background="@color/graytopo">
+        
+    <ImageView
+	    android:id="@+id/imageView1"
+	    android:layout_width="40dp"
+	    android:layout_height="fill_parent"
+	    android:paddingLeft="10dp"
+	    android:src="@drawable/ic_launcher" />
+
+    <TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="fill_parent"
+	    android:gravity="center_vertical"
+	    android:layout_marginLeft="10dp"
+	    android:text="RACHANDO A CONTA" />
+    
+    <Button 
+        android:id="@+id/buttonSobreVoltar"
+        android:layout_width="wrap_content"
+	    android:layout_height="fill_parent"
+	    android:layout_marginLeft="45dp"
+	    android:gravity="center"
+	    android:background="@drawable/buttonshape3"
+	    android:onClick="botoesSobre"
+	    android:text="Voltar"/>
+    </TableRow>
+    
+    <TableRow 
+        android:id="@+id/rowSegundo"
+	    android:layout_width="fill_parent"
+	    android:layout_height="50dp"
+	    android:layout_below="@+id/rowTop"
+	    android:background="@color/graytudo">
+    
+        <Button 
+	        android:id="@+id/buttonSobreApp"
+	        style="?android:attr/buttonBarButtonStyle"
+	        android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:layout_marginLeft="8dp"
+		    android:gravity="center"
+		    android:onClick="botoesSobre"
+		    android:text="Geral"
+		    android:textColor="@color/azulbebe"/>
+    
+        <Button 
+	        android:id="@+id/buttonSobrePessoa"
+	        style="?android:attr/buttonBarButtonStyle"
+	        android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:layout_marginLeft="8dp"
+		    android:gravity="center"
+		    android:onClick="botoesSobre"
+		    android:text="Pessoas"/>
+        
+        <Button 
+	        android:id="@+id/buttonSobreItem"
+	        style="?android:attr/buttonBarButtonStyle"
+	        android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:layout_marginLeft="8dp"
+		    android:gravity="center"
+		    android:onClick="botoesSobre"
+		    android:text="Itens"/>
+        
+        <Button 
+	        android:id="@+id/buttonSobreConta"
+	        style="?android:attr/buttonBarButtonStyle"
+	        android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:layout_marginLeft="8dp"
+		    android:gravity="center"
+		    android:onClick="botoesSobre"
+		    android:text="Conta"/>
+    </TableRow>
+   
+    
+    <TableLayout 
+        android:id="@+id/rowU"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/rowSegundo"
+	    android:layout_marginTop="10dp">
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:gravity="center"
+			    android:text="RACHANDO A CONTA" />
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Este aplicativo foi desenvolvido com intuito de facilitar a parte mais complicada e chata da noite."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    A hora de pagar a conta. Chega de calculadora, lápis e papel para dividir o valor, anotar quem pagou."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    O RACHANDO A CONTA faz tudo por você, divide o valor de cada pedido que você e seu grupo fizerem durante a noite para todos que forem consumir."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Mostra a todo momento quanto cada pessoa já gastou, além da possibilidade de ver o que cada pessoa consumiu detalhadamente."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:gravity="center"
+			    android:text="Descobertas sobre o App."/>
+        </TableRow>
+    </TableLayout>
+    
+    
+    <TableRow
+            android:id="@+id/rowGameQtd"
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_below="@+id/rowU">
+            <ImageView 
+                android:id="@+id/imageGameQtd"
+			    android:layout_width="30dp"
+			    android:layout_height="30dp"
+			    android:paddingLeft="10dp"
+			    android:layout_marginTop="5dp"/>
+            
+            <TextView 
+                android:id="@+id/txtGameQtd"
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:gravity="center_vertical"/>
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/gameValor"
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_below="@+id/rowGameQtd">
+            <ImageView 
+                android:id="@+id/imageGameValor"
+			    android:layout_width="30dp"
+			    android:layout_height="30dp"
+			    android:paddingLeft="10dp"
+			    android:layout_marginTop="5dp"/>
+            
+            <TextView
+                android:id="@+id/txtGameValor" 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:gravity="center_vertical"/>
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/gameDiverso1"
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_below="@+id/gameValor"
+			android:visibility="gone">
+            <ImageView 
+			    android:layout_width="35dp"
+			    android:layout_height="30dp"
+			    android:paddingLeft="10dp"
+			    android:layout_marginTop="5dp"
+			    android:src="@drawable/mesmoitens"/>
+            
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Grupo unido, todos consumiram os mesmos itens"
+			    android:gravity="center_vertical"/>
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/gameDiverso2"
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_below="@+id/gameValor"
+			android:visibility="gone">
+            <ImageView 
+			    android:layout_width="35dp"
+			    android:layout_height="30dp"
+			    android:paddingLeft="10dp"
+			    android:layout_marginTop="5dp"
+			    android:src="@drawable/riquinho"/>
+            
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Uma pessoa do grupo pagou mais da metade da conta, viva Riquinho Rico"
+			    android:gravity="center_vertical"/>
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/gameDiverso3"
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_below="@+id/gameValor"
+			android:visibility="gone">
+            <ImageView 
+			    android:layout_width="35dp"
+			    android:layout_height="30dp"
+			    android:paddingLeft="10dp"
+			    android:layout_marginTop="5dp"
+			    android:src="@drawable/bolsovazio"/>
+            
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Uma pessoa do grupo não gastou na noite, bolso furado"
+			    android:gravity="center_vertical"/>
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/gameDiverso4"
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_below="@+id/gameValor"
+			android:visibility="gone">
+            <ImageView 
+			    android:layout_width="35dp"
+			    android:layout_height="30dp"
+			    android:paddingLeft="10dp"
+			    android:layout_marginTop="5dp"
+			    android:src="@drawable/partesiguais"/>
+            
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="Todos pagaram o mesmo valor, quero ver conseguir isso de novo"
+			    android:gravity="center_vertical"/>
+        </TableRow>
+    
+    
+    
+    
+    
+    <TableLayout 
+        android:id="@+id/rowDois"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_below="@+id/rowSegundo"
+	    android:layout_marginTop="15dp"
+	    android:visibility="gone">
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:gravity="center"
+			    android:text="RACHANDO A CONTA - Pessoas" />
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Para cadastrar uma nova pessoa basta clicar no botão 'Adicionar Consumidor' e digitar o nome. NÃO é possivel cadastrar dois nomes iguais."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Após uma pessoa ter sido cadastrada, o valor referente a parte dela na conta ficará sempre disponível e atualizada logo abaixo do seu nome."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Ao clicar em um nome listado, é possível ver a quantidade de cada item que a pessoa consumiu, mostrando o valor total do item, quantas pesssoas consumiram e o valor já dividido desse item."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Ao final é mostrado o valor total relacionado a pessoa em questão."/>
+        </TableRow>
+        
+    </TableLayout>
+    
+    
+    <TableLayout 
+        android:id="@+id/rowTres"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_below="@+id/rowSegundo"
+	    android:layout_marginTop="15dp"
+	    android:visibility="gone">
+        
+         <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="RACHANDO A CONTA - Itens"
+				android:gravity="center"/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Para cadastrar um item basta clicar no botão 'Adicionar Item'. É preciso ter ao menos uma pessoa já cadastrada para poder fazer isso."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Ao clicar no botão, uma nova janela aparecerá para informar o nome, valor, quantidade e pessoas que irão consumir o item em questão. É OBRIGATÓRIO informar todas estas informações."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Ao confirmar o cadastro o valor já será dividido para todos que foram marcados e o aplicativo voltará a janela principal."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Ao clicar em um item na janela principal é possível alterar a quantidade, bem como excluí-lo caso tenha sido informado algo errado.\n Ainda aparece um pequeno aviso no canto inferior do aparelho informando quais pessoas estão marcadas no item."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Ainda aparece um pequeno aviso no canto inferior do aparelho informando quais pessoas estão marcadas no item."/>
+        </TableRow>
+        
+    </TableLayout>
+    
+    
+    <TableLayout 
+        android:id="@+id/rowQuatro"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_below="@+id/rowSegundo"
+	    android:layout_marginTop="15dp"
+	    android:visibility="gone">
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+            <TextView 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="RACHANDO A CONTA - Conta"
+				android:gravity="center"/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    A cada item novo cadastrado o valor total bem como o valor referente a cada pessoa cadastrada é atualizado."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    O valor de cada pessoa fica localizado logo abaixo do seu nome e o valor total fica logo abaixo da lista de itens."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Caso uma pessoa pague sua parte antes da noitada terminar, basta clicar no nome dela e clicar no botão 'Marcar como pago', isso já abaterá a parte dessa pessoa na conta total."/>
+        </TableRow>
+        
+        <TableRow 
+            android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp">
+            <TextView 
+                android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="5dp"
+			    android:text="    Ao final da noitada quando todos já tiverem pago sua parte, basta clicar em 'Limpar conta' para apagar tudo. NÃO há como desfazer essa ação."/>
+        </TableRow>
+        
+    </TableLayout>
+    
+</LinearLayout>
+</ScrollView>
+</RelativeLayout>
