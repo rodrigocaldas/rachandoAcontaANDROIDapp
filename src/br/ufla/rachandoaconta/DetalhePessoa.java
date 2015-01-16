@@ -26,6 +26,7 @@ public class DetalhePessoa extends Activity {
 	private ArrayList<String> listando = new ArrayList<String>();
 	private float valorTotal = 0;
 	private Bundle receber;
+	private boolean percentagem;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class DetalhePessoa extends Activity {
 		
 		name = receber.getString("nome");
 		nome.setText(name);
+		percentagem = receber.getBoolean("percent");
 		crPessoa = dbo.recuperarIndividuo(dbo, receber.getString("nome"));
 		crPessoa.moveToFirst();
 		crItem = dbo.recuperarPedido(dbo);
@@ -58,6 +60,10 @@ public class DetalhePessoa extends Activity {
 				}
 			}
 			crItem.moveToNext();
+		}
+		if (percentagem){
+			listando.add("10% do garçom = R$"+valorTotal*10/100);
+			valorTotal += valorTotal*10/100;
 		}
 		total.setText(String.valueOf(valorTotal));
 		preencheListaConsumidores(listando);

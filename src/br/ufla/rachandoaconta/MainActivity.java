@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -24,6 +25,7 @@ public class MainActivity extends Activity {
 	private ListView listaConsumidor;
 	private ListView listaItem;
 	private TextView total;
+	private CheckBox percentagem;
 	private ArrayList<String> listaPessoas = new ArrayList<String>();
 	private ArrayList<String> listaAlternativa = new ArrayList<String>();
 	private ArrayList<String> listaPedidos = new ArrayList<String>();
@@ -62,6 +64,7 @@ public class MainActivity extends Activity {
         listaConsumidor = (ListView) findViewById(R.id.listViewConsumidor);
         listaItem = (ListView) findViewById(R.id.listViewItem);
         total = (TextView) findViewById(R.id.textViewValor);
+        percentagem = (CheckBox) findViewById(R.id.checkBoxPercentagem);
 
         recuperarTabelaPessoa();
         recuperarTabelaItem();
@@ -96,14 +99,10 @@ public class MainActivity extends Activity {
 		try {
 			crGame = dbo.recuperarGamefication(dbo, "recompensa");
 			crGame.moveToFirst();
-			Log.d("DEBUG MAIN","Primeira tentativa de debugar: "+String.valueOf(crGame.getInt(1)));
 		} catch (Exception e) {
 			dbo.cadastrargamefication(dbo, "recompensa");
-			Log.d("DEBUG MAIN","Voltou ao Main");
 			crGame = dbo.recuperarGamefication(dbo, "recompensa");
 			crGame.moveToFirst();
-			Log.d("DEBUG MAIN","Quantidade: "+String.valueOf(crGame.getInt(1)));
-			Log.d("DEBUG MAIN","Segunda tentativa de debugar: "+String.valueOf(crGame.getInt(1)));
 		}
         
     }
@@ -119,17 +118,34 @@ public class MainActivity extends Activity {
 		crPessoa = dbo.recuperarPessoa(dbo);
 		crPessoa.moveToFirst();
 		valTotal = 0;
-		for(int index = 0; index < crPessoa.getCount(); index++){
-			float valPes = crPessoa.getFloat(1);
-			if(crPessoa.getInt(2) == 0){
-				listaPessoas.add(crPessoa.getString(0)+"\nR$ "+String.format("%.2f", valPes));
-				valTotal += valPes;
-			}else{
-				listaPessoas.add(crPessoa.getString(0)+"\nR$ "+String.format("%.2f", valPes)+
-						"    PAGO");
+		listaPessoas.clear();
+		if (percentagem.isChecked()){
+			for(int index = 0; index < crPessoa.getCount(); index++){
+				float valPes = crPessoa.getFloat(1);
+				if(crPessoa.getInt(2) == 0){
+					listaPessoas.add(crPessoa.getString(0)+"\nR$ "+String.format("%.2f", valPes+valPes*10/100));
+					valTotal += valPes+valPes*10/100;
+				}else{
+					listaPessoas.add(crPessoa.getString(0)+"\nR$ "+String.format("%.2f", valPes+valPes*10/100)+
+								"    PAGO");
+					}
+				listaAlternativa.add(crPessoa.getString(0));
+				crPessoa.moveToNext();
 			}
-			listaAlternativa.add(crPessoa.getString(0));
-			crPessoa.moveToNext();
+		}
+		else{
+			for(int index = 0; index < crPessoa.getCount(); index++){
+				float valPes = crPessoa.getFloat(1);
+				if(crPessoa.getInt(2) == 0){
+					listaPessoas.add(crPessoa.getString(0)+"\nR$ "+String.format("%.2f", valPes));
+					valTotal += valPes;
+				}else{
+					listaPessoas.add(crPessoa.getString(0)+"\nR$ "+String.format("%.2f", valPes)+
+								"    PAGO");
+					}
+				listaAlternativa.add(crPessoa.getString(0));
+				crPessoa.moveToNext();
+			}
 		}
 		total.setText("R$ "+String.format("%.2f",valTotal));
 		preencheListaConsumidores(listaPessoas);
@@ -184,6 +200,7 @@ public class MainActivity extends Activity {
 		Intent detalhe = new Intent(MainActivity.this, DetalhePessoa.class);
 		Bundle passar = new Bundle();
 		passar.putString("nome", cursorPessoa.getString(0));
+		passar.putBoolean("percent", percentagem.isChecked());
 		detalhe.putExtras(passar);
 		startActivity(detalhe);
 		finish();
@@ -194,6 +211,9 @@ public class MainActivity extends Activity {
 	  Saída: Nenhuma*/
 	public void acaoBotoes(View v){
     	switch (v.getId()) {
+    	case R.id.checkBoxPercentagem:
+    		recuperarTabelaPessoa();
+    		break;
     	/*Botão "Adicionar consumidor"
     	  Abre um AlertDialog com um EditText para cadastrar um consumidor no banco de dado,
     	  não é possível cadastrar nome repetido nem nome vazio.*/

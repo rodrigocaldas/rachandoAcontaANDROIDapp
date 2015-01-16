@@ -109,7 +109,7 @@
         </TableRow>
     </TableLayout>
     
-    <TableRow 
+    <TableLayout 
         android:id="@+id/rowTotal"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"
@@ -117,6 +117,18 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rowshape2">
+        
+        <TableRow >
+
+            <CheckBox
+                android:id="@+id/checkBoxPercentagem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="acaoBotoes"
+                android:text="Valor total com 10% do garçom." />
+
+        </TableRow>
+    <TableRow>
         
         <TextView
 	        android:layout_width="wrap_content"
@@ -131,10 +143,10 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="fill_parent"
 	        android:gravity="center_vertical"
-	        android:layout_marginLeft="20dp"
+	        android:layout_marginLeft="-20dp"
 	        android:text="R$ 0,00" />
-        
     </TableRow>
+    </TableLayout>
     
     <TableRow
         android:layout_width="fill_parent"
