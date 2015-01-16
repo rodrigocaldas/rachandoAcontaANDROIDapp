@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -44,14 +43,14 @@ public class MainActivity extends Activity {
 	protected void onResume(){
 		super.onResume();
 		if(!ja){
-			listaItem.setBackground(null);
+			listaItem.setBackgroundDrawable(null);
 			listaPessoas.clear();
 			listaPedidos.clear();
 			listaAlternativa.clear();
 			recuperarTabelaItem();
 			recuperarTabelaPessoa();
 			if(listaPedidos.size() != 0){
-	        	listaItem.setBackground(getResources().getDrawable(R.drawable.edtshape));
+	        	listaItem.setBackgroundDrawable(getResources().getDrawable(R.drawable.edtshape));
 			}
 		}
 		ja = true;
@@ -71,10 +70,10 @@ public class MainActivity extends Activity {
         ja = true;
         
         if(listaPessoas.size() != 0){
-        	listaConsumidor.setBackground(getResources().getDrawable(R.drawable.edtshape));
+        	listaConsumidor.setBackgroundDrawable(getResources().getDrawable(R.drawable.edtshape));
         }
         if(listaPedidos.size() != 0){
-        	listaItem.setBackground(getResources().getDrawable(R.drawable.edtshape));
+        	listaItem.setBackgroundDrawable(getResources().getDrawable(R.drawable.edtshape));
         }
         
         
@@ -223,7 +222,7 @@ public class MainActivity extends Activity {
 			dialog.setIcon(getResources().getDrawable(R.drawable.pessoa));
 			dialog.setMessage("Digite o nome da pessoa.");
 			final EditText input = new EditText(MainActivity.this);
-			input.setBackground(getResources().getDrawable(drawable.edtshape));
+			input.setBackgroundDrawable(getResources().getDrawable(drawable.edtshape));
 			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.MATCH_PARENT);
