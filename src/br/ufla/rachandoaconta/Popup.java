@@ -20,6 +20,7 @@ public class Popup extends Activity {
 	private boolean abriu = false;
 	private String[] pessoasDivididas;
 	private DataBaseOperations dbo = new DataBaseOperations(Popup.this);
+	private boolean ok = true;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,26 +56,50 @@ public class Popup extends Activity {
 		/*Botão "mais"
 		  Atualiza a quantidade de itens na tabela de itens e chama "atualizarValorPessoa".*/
 		case R.id.imageButton1:
-			int mais = Integer.parseInt(info3.getText().toString());
-			mais++;
-			info3.setText(String.valueOf(mais));
-			dbo.atualizarPedido(dbo, receber.getString("nome"), receber.getString("pessoas"), mais);
-			atualizarValorPessoa(true);
+			for(String algo : pessoasDivididas){
+	        	Cursor pessoainviavel = dbo.recuperarIndividuo(dbo, algo);
+	        	pessoainviavel.moveToFirst();
+	        	if (pessoainviavel.getInt(2) == 1){
+	        		ok = false;
+	        	}
+			}
+			if (!ok){
+		       	Toast.makeText(Popup.this, "Não é possivel marcar alguém que já tenha pago sua parte da conta.", Toast.LENGTH_SHORT).show();
+		    }
+		    else{
+				int mais = Integer.parseInt(info3.getText().toString());
+				mais++;
+				info3.setText(String.valueOf(mais));
+				dbo.atualizarPedido(dbo, receber.getString("nome"), receber.getString("pessoas"), mais);
+				atualizarValorPessoa(true);
+		    }
 			break;
 		
 		/*Botão "menos"
 		  Responsável por decrementar a quantidade do item e por recalcular o valor consumido por
 		  cada pessoa que encontra-se listada.*/
 		case R.id.imageButton2:
-			int menos = Integer.parseInt(info3.getText().toString());
-			if(menos > 1){
-				menos--;
-				info3.setText(String.valueOf(menos));
-				dbo.atualizarPedido(dbo, receber.getString("nome"), receber.getString("pessoas"), menos);
-				atualizarValorPessoa(false);
-			}else{
-				Toast.makeText(Popup.this, "Não é possível zerar a quantidade", Toast.LENGTH_SHORT).show();
+			for(String algo : pessoasDivididas){
+	        	Cursor pessoainviavel = dbo.recuperarIndividuo(dbo, algo);
+	        	pessoainviavel.moveToFirst();
+	        	if (pessoainviavel.getInt(2) == 1){
+	        		ok = false;
+	        	}
 			}
+			if (!ok){
+		       	Toast.makeText(Popup.this, "Não é possivel marcar alguém que já tenha pago sua parte da conta.", Toast.LENGTH_SHORT).show();
+		    }
+		    else{
+				int menos = Integer.parseInt(info3.getText().toString());
+				if(menos > 1){
+					menos--;
+					info3.setText(String.valueOf(menos));
+					dbo.atualizarPedido(dbo, receber.getString("nome"), receber.getString("pessoas"), menos);
+					atualizarValorPessoa(false);
+				}else{
+					Toast.makeText(Popup.this, "Não é possível zerar a quantidade", Toast.LENGTH_SHORT).show();
+				}
+		    }
 			break;
 		
 		case R.id.buttonPopup:

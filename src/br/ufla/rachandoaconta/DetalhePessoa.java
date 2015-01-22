@@ -3,6 +3,7 @@ package br.ufla.rachandoaconta;
 import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +47,13 @@ public class DetalhePessoa extends Activity {
 		percentagem = receber.getBoolean("percent");
 		crPessoa = dbo.recuperarIndividuo(dbo, receber.getString("nome"));
 		crPessoa.moveToFirst();
+		
+		if(crPessoa.getInt(2) == 0){
+			pagar.setText("Marcar como pago");
+		}else{
+			pagar.setText("Marcar não pago");
+		}
+		
 		crItem = dbo.recuperarPedido(dbo);
 		crItem.moveToFirst();
 		while(crItem.isAfterLast() == false){
@@ -132,4 +140,12 @@ public class DetalhePessoa extends Activity {
 			break;
 		}
 	}
+	
+	@Override
+    public void onBackPressed() {
+		super.onBackPressed();
+		Intent voltar = new Intent(DetalhePessoa.this, MainActivity.class);
+		startActivity(voltar);
+		finish();
+    }
 }

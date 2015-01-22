@@ -62,40 +62,55 @@ public class Pedido extends Activity {
 	            	itensMarcados.add(adapter.getItem(position));
 	        }
 	        
-	        String info1 = inputItem.getText().toString();
-	        String info2 = inputPreco.getText().toString();
-	        String info3 = inputQuantidade.getText().toString();
-	        //Verifica se algum campo foi deixado em branco ou se ninguem foi selecionado
-	        if(!info1.equals("") && !info2.equals("") && !info3.equals("") && (itensMarcados.size() != 0) ){
-		        try {
-		        	//Cadastra o item no banco de dados
-		        	DataBaseOperations dbo= new DataBaseOperations(Pedido.this);
-		        	dbo.cadastrarPedido(dbo, 
-		        						info1, 
-		        						info2,
-		        						info3,
-		        						itensMarcados);
-		        	
-		        	//Para cada pessoa marcada na ListView, calcula o preço dividido do item que é
-		        	//Somado ao que a pessoa já consumiu e cadastra no banco de dados
-		        	for (String item : itensMarcados){
-		        		float valorParcial = (Float.parseFloat(info2)*Float.parseFloat(info3))/itensMarcados.size();
-		        		Cursor pog = dbo.recuperarIndividuo(dbo, item);
-		        		pog.moveToFirst();
-		        		float valorTotal = pog.getFloat(1) + valorParcial;
-		        		dbo.atualizarValorPessoa(dbo, item, valorTotal);
-		        	}
-		        	//Volta a Activity inicial, fechando o cursor.
-		        	Intent conf = new Intent(Pedido.this, MainActivity.class);
-					startActivity(conf);
-					crPessoa.close();
-					finish();
-					break;
-				} catch (Exception e) {
-					Toast.makeText(Pedido.this,"Falha",Toast.LENGTH_LONG).show();
-				}
-	        }else{
-	        	Toast.makeText(Pedido.this, "Verifique se algum campo ficou em branco", Toast.LENGTH_SHORT).show();
+	        boolean ok = true;
+	        for (String algo : itensMarcados){
+	        	DataBaseOperations dbo = new DataBaseOperations(Pedido.this);
+	        	Cursor pessoainviavel = dbo.recuperarIndividuo(dbo, algo);
+	        	pessoainviavel.moveToFirst();
+	        	if (pessoainviavel.getInt(2) == 1){
+	        		ok = false;
+	        	}
+	        }
+	        
+	        if (!ok){
+	        	Toast.makeText(Pedido.this, "Não é possivel marcar alguém que já tenha pago sua parte da conta.", Toast.LENGTH_SHORT).show();
+	        }
+	        else{
+		        String info1 = inputItem.getText().toString();
+		        String info2 = inputPreco.getText().toString();
+		        String info3 = inputQuantidade.getText().toString();
+		        //Verifica se algum campo foi deixado em branco ou se ninguem foi selecionado
+		        if(!info1.equals("") && !info2.equals("") && !info3.equals("") && (itensMarcados.size() != 0) ){
+			        try {
+			        	//Cadastra o item no banco de dados
+			        	DataBaseOperations dbo= new DataBaseOperations(Pedido.this);
+			        	dbo.cadastrarPedido(dbo, 
+			        						info1, 
+			        						info2,
+			        						info3,
+			        						itensMarcados);
+			        	
+			        	//Para cada pessoa marcada na ListView, calcula o preço dividido do item que é
+			        	//Somado ao que a pessoa já consumiu e cadastra no banco de dados
+			        	for (String item : itensMarcados){
+			        		float valorParcial = (Float.parseFloat(info2)*Float.parseFloat(info3))/itensMarcados.size();
+			        		Cursor pog = dbo.recuperarIndividuo(dbo, item);
+			        		pog.moveToFirst();
+			        		float valorTotal = pog.getFloat(1) + valorParcial;
+			        		dbo.atualizarValorPessoa(dbo, item, valorTotal);
+			        	}
+			        	//Volta a Activity inicial, fechando o cursor.
+			        	Intent conf = new Intent(Pedido.this, MainActivity.class);
+						startActivity(conf);
+						crPessoa.close();
+						finish();
+						break;
+					} catch (Exception e) {
+						Toast.makeText(Pedido.this,"Falha",Toast.LENGTH_LONG).show();
+					}
+		        }else{
+		        	Toast.makeText(Pedido.this, "Verifique se algum campo ficou em branco", Toast.LENGTH_SHORT).show();
+		        }
 	        }
 		}
 	}
@@ -127,4 +142,12 @@ public class Pedido extends Activity {
 		inputLista.setAdapter(adapter);
 		inputLista.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 	}
+	
+	@Override
+    public void onBackPressed() {
+		super.onBackPressed();
+		Intent voltar = new Intent(Pedido.this, MainActivity.class);
+		startActivity(voltar);
+		finish();
+    }
 }

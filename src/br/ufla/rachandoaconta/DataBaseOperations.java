@@ -150,7 +150,6 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 		cv.put(Game.DIVERSO3, 0);
 		cv.put(Game.DIVERSO4, 0);
 		SQ.insert(Game.TABLENAME, null, cv);
-		Log.d("DEBUG DBO", "cadastrou: "+referencia);
 	}
 	
 	public Cursor recuperarGamefication(DataBaseOperations dop, String referencia){
@@ -171,32 +170,26 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 		case 1:
 			cv.put(Game.QUANTIDADE, referencia2);
 			SQ.update(Game.TABLENAME, cv, selecao, ref);
-			Log.d("DEBUG DBO","Passe pelo case 1");
 			break;
 		case 2:
 			cv.put(Game.VALOR, referencia2);
 			SQ.update(Game.TABLENAME, cv, selecao, ref);
-			Log.d("DEBUG DBO","Passe pelo case 2");
 			break;
 		case 3:
 			cv.put(Game.DIVERSO1, referencia2);
 			SQ.update(Game.TABLENAME, cv, selecao, ref);
-			Log.d("DEBUG DBO","Passe pelo case 3");
 			break;
 		case 4:
 			cv.put(Game.DIVERSO2, referencia2);
 			SQ.update(Game.TABLENAME, cv, selecao, ref);
-			Log.d("DEBUG DBO","Passe pelo case 4");
 			break;
 		case 5:
 			cv.put(Game.DIVERSO3, referencia2);
 			SQ.update(Game.TABLENAME, cv, selecao, ref);
-			Log.d("DEBUG DBO","Passe pelo case 5");
 			break;
 		case 6:
 			cv.put(Game.DIVERSO4, referencia2);
 			SQ.update(Game.TABLENAME, cv, selecao, ref);
-			Log.d("DEBUG DBO","Passe pelo case 6");
 			break;
 		}
 	}

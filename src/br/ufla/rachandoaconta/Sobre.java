@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +41,6 @@ public class Sobre extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sobre);
 		
-		Log.d("DEBUG SOBRE", "Iniciou essa joça");
 		um = (Button) findViewById(R.id.buttonSobreApp);
 		dois = (Button) findViewById(R.id.buttonSobrePessoa);
 		tres = (Button) findViewById(R.id.buttonSobreItem);
@@ -58,8 +58,6 @@ public class Sobre extends Activity {
 		bolsoFurado = (TableRow) findViewById(R.id.gameDiverso3);
 		partesIguais = (TableRow) findViewById(R.id.gameDiverso4);
 		
-		game = dbo.recuperarGamefication(dbo, "recompensa");
-		game.moveToFirst();
 		gamefication();
 	}
 	
@@ -154,6 +152,9 @@ public class Sobre extends Activity {
 	
 	
 	public void gamefication(){
+		game = dbo.recuperarGamefication(dbo, "recompensa");
+		if(game.moveToFirst()){
+		
 		if(game.getInt(1) >= 1){
 			gameQtdI.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher));
 			gameQtdT.setText("Utilizou o App 1 vez. Ainda tem muito que aprender");
@@ -179,6 +180,7 @@ public class Sobre extends Activity {
 			gameQtdT.setVisibility(View.VISIBLE);
 		}
 		gamefication2();
+		}
 	}
 
 	private void gamefication2() {
@@ -223,4 +225,12 @@ public class Sobre extends Activity {
 			partesIguais.setVisibility(View.VISIBLE);
 		}
 	}
+	
+	@Override
+    public void onBackPressed() {
+		super.onBackPressed();
+		Intent voltar = new Intent(Sobre.this, MainActivity.class);
+		startActivity(voltar);
+		finish();
+    }
 }

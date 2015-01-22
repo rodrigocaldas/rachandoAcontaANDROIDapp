@@ -6,8 +6,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -37,7 +39,9 @@ public class MainActivity extends Activity {
 	private boolean bolsoFurado = false;
 	private boolean partesIguais = true;
 	private float valTotal;
+	private String restoredText;
 	private DataBaseOperations dbo = new DataBaseOperations(MainActivity.this);
+	private SharedPreferences prefs;
 	
 	@Override
 	protected void onResume(){
@@ -64,6 +68,14 @@ public class MainActivity extends Activity {
         listaItem = (ListView) findViewById(R.id.listViewItem);
         total = (TextView) findViewById(R.id.textViewValor);
         percentagem = (CheckBox) findViewById(R.id.checkBoxPercentagem);
+        
+        prefs = getPreferences(MODE_PRIVATE);
+        restoredText = prefs.getString("text", "não");
+        if (restoredText.equals("não")){
+        	percentagem.setChecked(false);
+        }else{
+        	percentagem.setChecked(true);
+        }
 
         recuperarTabelaPessoa();
         recuperarTabelaItem();
@@ -97,7 +109,13 @@ public class MainActivity extends Activity {
         
 		try {
 			crGame = dbo.recuperarGamefication(dbo, "recompensa");
-			crGame.moveToFirst();
+			if (crGame.moveToFirst()){
+				//faz nada já foi para a primeira posição.
+			}else{
+				dbo.cadastrargamefication(dbo, "recompensa");
+				crGame = dbo.recuperarGamefication(dbo, "recompensa");
+				crGame.moveToFirst();
+			}
 		} catch (Exception e) {
 			dbo.cadastrargamefication(dbo, "recompensa");
 			crGame = dbo.recuperarGamefication(dbo, "recompensa");
@@ -211,6 +229,15 @@ public class MainActivity extends Activity {
 	public void acaoBotoes(View v){
     	switch (v.getId()) {
     	case R.id.checkBoxPercentagem:
+    		SharedPreferences.Editor sharedEditor = prefs.edit();
+    		if(restoredText.equals("não")){
+    			sharedEditor.putString("text", "sim");
+    			restoredText = "sim";
+    		}else{
+    			sharedEditor.putString("text", "não");
+    			restoredText = "não";
+    		}
+    		sharedEditor.commit();
     		recuperarTabelaPessoa();
     		break;
     	/*Botão "Adicionar consumidor"
@@ -287,58 +314,62 @@ public class MainActivity extends Activity {
 				public void onClick(DialogInterface dialog, int which) {
 					//Responsável pela parte do Gamefication de quantidade de uso
 					if(listaAlternativa.size() >= 2){
-						int gameQtd = crGame.getInt(1); 
-						gameQtd += 1;
-						dbo.alterarGamefication(dbo, "recompensa", gameQtd, 1);
-						crGame = dbo.recuperarGamefication(dbo, "recompensa");
-						crGame.moveToFirst();
+							int gameQtd = crGame.getInt(1); 
+							gameQtd += 1;
+							dbo.alterarGamefication(dbo, "recompensa", gameQtd, 1);
+							crGame = dbo.recuperarGamefication(dbo, "recompensa");
+							crGame.moveToFirst();
+							
+							
+							try {
+								//Responsável pela parte do Gamefication de valor da conta
+								if(valTotal > crGame.getFloat(2)){
+									dbo.alterarGamefication(dbo, "recompensa", valTotal, 2);
+								}
+								
+																
+								//Responsável pela parte do Gamefication de pagar mais que a metade, nada, todos o mesmo valor.
+								crPessoa.moveToFirst();
+								Float anterior = crPessoa.getFloat(1);
+								for(int index = 0; index < crPessoa.getCount(); index++){
+									if( (valTotal/crPessoa.getFloat(1)) <= 2){
+										metade = true;
+									}
+									if(crPessoa.getFloat(1) == 0){
+										bolsoFurado = true;
+									}
+									if(anterior != crPessoa.getFloat(1)){
+										partesIguais = false;
+									}
+									crPessoa.moveToNext();
+								}
+								if (metade){
+									dbo.alterarGamefication(dbo, "recompensa", 1, 4);
+								}
+								if(bolsoFurado){
+									dbo.alterarGamefication(dbo, "recompensa", 1, 5);
+								}
+								if(partesIguais){
+									dbo.alterarGamefication(dbo, "recompensa", 1, 6);
+								}
+								
+								//Responsável pela parte do Gamefication de mesmo itens consumidos
+								String antes = listaPedidos.get(0);
+								if(!bolsoFurado){
+									for (String algo : listaPedidos){
+										if (antes != algo){
+											mesmo = false;
+										}
+									}
+									if(mesmo){
+										dbo.alterarGamefication(dbo, "recompensa", 1, 3);
+									}
+								}
+							} catch (Exception e) {
+								
+							}
 						
-						
-						try {
-							//Responsável pela parte do Gamefication de valor da conta
-							if(valTotal > crGame.getFloat(2)){
-								dbo.alterarGamefication(dbo, "recompensa", valTotal, 2);
-							}
-							
-							//Responsável pela parte do Gamefication de mesmo itens consumidos
-							String antes = listaPedidos.get(0);
-							for (String algo : listaPedidos){
-								if (antes != algo){
-									mesmo = false;
-								}
-							}
-							if(mesmo){
-								dbo.alterarGamefication(dbo, "recompensa", 1, 3);
-							}
-							
-							//Responsável pela parte do Gamefication de pagar mais que a metade, nada, todos o mesmo valor.
-							crPessoa.moveToFirst();
-							Float anterior = crPessoa.getFloat(1);
-							for(int index = 0; index < crPessoa.getCount(); index++){
-								if( (valTotal/crPessoa.getFloat(1)) <= 2){
-									metade = true;
-								}
-								if(crPessoa.getFloat(1) == 0){
-									bolsoFurado = true;
-								}
-								if(anterior != crPessoa.getFloat(1)){
-									partesIguais = false;
-								}
-								crPessoa.moveToNext();
-							}
-							if (metade){
-								dbo.alterarGamefication(dbo, "recompensa", 1, 4);
-							}
-							if(bolsoFurado){
-								dbo.alterarGamefication(dbo, "recompensa", 1, 5);
-							}
-							if(partesIguais){
-								dbo.alterarGamefication(dbo, "recompensa", 1, 6);
-							}
-						} catch (Exception e) {
-							
-						}
-					}				
+					}
 					
 					listaPessoas.clear();
 					listaPedidos.clear();
